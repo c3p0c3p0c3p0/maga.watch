@@ -1,0 +1,526 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="dmxAppConnect/dmxAppConnect.js"></script>
+    <meta name="ac:route" content="/">
+    <base href="/">
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <!-- New Wappler Page -->
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="bootstrap/4/css/bootstrap.min.css" />
+    <script src="dmxAppConnect/dmxBootstrap4Navigation/dmxBootstrap4Navigation.js" defer=""></script>
+    <script src="dmxAppConnect/dmxBootstrap4Collapse/dmxBootstrap4Collapse.js" defer=""></script>
+    <script src="dmxAppConnect/dmxVideo/dmxVideo.js" defer=""></script>
+    <script src="dmxAppConnect/dmxBootstrap4Modal/dmxBootstrap4Modal.js" defer=""></script>
+    <link rel="stylesheet" href="dmxAppConnect/dmxPreloader/dmxPreloader.css" />
+    <script src="dmxAppConnect/dmxPreloader/dmxPreloader.js" defer=""></script>
+    <link rel="stylesheet" href="dmxAppConnect/dmxMediumEditor/medium-editor.css" />
+    <script src="dmxAppConnect/dmxMediumEditor/medium-editor.js" defer=""></script>
+    <link rel="stylesheet" href="dmxAppConnect/dmxMediumEditor/dmxMediumEditor.css" />
+    <script src="dmxAppConnect/dmxMediumEditor/dmxMediumEditor.js" defer=""></script>
+    <link rel="stylesheet" href="dmxAppConnect/dmxMediumEditor/themes/default.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote/dist/summernote-bs4.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/summernote/dist/summernote-bs4.min.js" defer=""></script>
+    <script src="dmxAppConnect/dmxSummernote/dmxSummernote.js" defer=""></script>
+    <link rel="stylesheet" href="dmxAppConnect/dmxBootstrap4TableGenerator/dmxBootstrap4TableGenerator.css" />
+</head>
+
+<body class="style1" id="index" is="dmx-app">
+    <dmx-serverconnect id="sc_get_posts" url="api/posts/view_posts"></dmx-serverconnect>
+    <header class="style2 mb-n1 mb-lg-n2">
+        <div class="style6 text-center w-auto bg-primary container rounded-bottom">
+
+
+
+
+            <div class="row">
+                <div class="col align-self-center">
+                    <div class="modal style27 text-left" id="NewPostModal" is="dmx-bs4-modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">New Post</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container text-left">
+                                        <div class="dropdown">
+                                            <button id="dropdown3" class="btn dropdown-toggle mb-2 w-100 btn-outline-primary" type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">Post Type</button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdown2">
+                                                <a class="dropdown-item" href="#" dmx-on:click="MeetUpModal.show()">Meet Up</a>
+                                                <a class="dropdown-item" href="#">Event</a>
+                                                <a class="dropdown-item" href="#">Text Post</a>
+                                                <a class="dropdown-item" href="#">Link Post</a>
+                                                <a class="dropdown-item" href="#">Image Post</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="CreatePostButton" class="btn style18 w-auto h-auto text-nowrap mb-sm-2 btn-light bg-white text-primary mt-xl-1 mt-lg-2" data-toggle="modal" data-target="#NewPostModal">Create Post&nbsp;<i
+                            class="fa fa-plus"></i></button>
+                </div>
+                <div class="col"><img src="assets/images/logo.png" width="75px" class="mt-1"></div>
+                <div class="col style27 d-flex justify-content-lg-center align-self-lg-center mt-lg-2">
+                    <dmx-preloader id="preloader1"></dmx-preloader>
+                </div>
+            </div>
+            <nav class="navbar navbar-dark justify-content-md-center justify-content-sm-center justify-content-center style21 bg-dark text-primary sticky-top navbar-expand-lg ml-n3 mr-n3 ml-lg-n3 mr-lg-n3 flex-xl-column-reverse mt-xl-1 mr-xl-n3">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse1" aria-controls="collapse1" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="collapse1" class="collapse navbar-collapse style22 mt-xl-2 justify-content-lg-end bg-transparent">
+                    <div class="navbar-nav align-items-md-center align-items-sm-center">
+                        <a class="nav-item nav-link" href="#">Notifications</a><a class="nav-item nav-link" href="#">Messenger</a><a class="nav-item nav-link" href="#">My Watchlist</a>
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="dropdown1" role="button" aria-haspopup="true" aria-expanded="false">Account Settings</a>
+                            <div class="dropdown-menu style22" aria-labelledby="dropdown1">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+
+
+
+
+                        <a class="nav-item nav-link" href="#">Log out</a>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <main class="style4">
+        <div class="modal" id="MeetUpModal" is="dmx-bs4-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h5 class="modal-title">Post a Meet Up<dmx-datetime id="var1"></dmx-datetime>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="dropdown">
+                            <button id="dropdown2" class="btn dropdown-toggle btn-primary w-100 text-xl-center mb-xl-3" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">State&nbsp;&nbsp;</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdown2">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+
+                        <input id="PostMeetUpModalTitleTextInput" name="text2" type="text" class="form-control mb-xl-3" placeholder="Title">
+                        <textarea id="editor1" name="editor1" is="dmx-summernote"
+                            dmx-bind:toolbar="[['style',['style']],['font',['bold','underline','clear']],['fontname',['fontname']],['color',['color']],['para',['ul','ol','paragraph']],['table',['table']],['insert',['link','picture','video']],['view',['fullscreen','codeview','help']]]"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col bg-secondary style1 border-dark border-top border-left border-right" style="">
+                    <ul class="nav justify-content-xl-center small text-monospace text-lowercase nav-fill nav-tabs flex-nowrap justify-content-center ml-4 mr-4 style26" id="navTabs1_tabs" role="tablist">
+                        <li class="nav-item ml-1">
+                            <a class="nav-link text-dark style5 active" id="navTabs1_1_tab" data-toggle="tab" href="#" data-target="#navTabs1_1" role="tab" aria-controls="navTabs1_1" aria-selected="true">HOT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="navTabs1_2_tab" data-toggle="tab" href="#" data-target="#navTabs1_2" role="tab" aria-controls="navTabs1_2" aria-selected="false">NEW</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="navTabs1_3_tab" data-toggle="tab" href="#" data-target="#navTabs1_3" role="tab" aria-controls="navTabs1_3" aria-selected="false">RISING</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link style8 text-dark" id="navTabs1_4_tab" data-toggle="tab" href="#" data-target="#navTabs1_4" role="tab" aria-controls="navTabs1_3" aria-selected="false">TOP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link style8 text-dark" id="navTabs1_5_tab" data-toggle="tab" href="#" data-target="#navTabs1_5" role="tab" aria-controls="navTabs1_3" aria-selected="false">search</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content style23" id="navTabs1_content">
+                        <div class="tab-pane fade show active mt-sm-n1" id="navTabs1_1" role="tabpanel">
+
+                            <div class="container wappler-block pt-3 pb-3 bg-white mt-sm-n1">
+                                <div class="row">
+                                    <div class="col">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3">
+                                        <video is="dmx-video" id="video1" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video2" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video3" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video7" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video8" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video9" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video10" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video11" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video12" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video13" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="navTabs1_2" role="tabpanel">
+                            <div class="container wappler-block pt-3 pb-3 bg-white mt-sm-n1">
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3">
+                                        <video is="dmx-video" id="video4" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video4" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video4" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="navTabs1_3" role="tabpanel">
+                            <div class="container wappler-block pt-3 pb-3 bg-white mt-sm-n1">
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3">
+                                        <video is="dmx-video" id="video5" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video5" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video5" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="navTabs1_4" role="tabpanel">
+                            <div class="container wappler-block pt-3 pb-3 bg-white mt-sm-n1">
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3">
+                                        <video is="dmx-video" id="video6" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video6" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video6" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade mt-2 mt-sm-n1" id="navTabs1_5" role="tabpanel">
+                            <div class="container bg-white mt-sm-n1 pt-sm-2"><input id="text1" name="text1" type="text" class="form-control form-control-lg mt-0" placeholder="Search..."></div>
+
+                            <div class="container wappler-block pt-3 pb-3 bg-white">
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3">
+                                        <video is="dmx-video" id="video14" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video14" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video14" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video15" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video16" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video17" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video18" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video19" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video20" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-3"><video is="dmx-video" id="video21" width="100%"></video>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-9">
+                                        <h4>
+                                            Fancy display heading</h4>
+                                        <p>A nice paragraph</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="style3 bg-transparent">
+        <div class="container bg-secondary border-left border-right border-dark style25">
+            <section>
+                <div class="container bg-white border-right border-bottom border-left border-dark">
+                    <div class="row align-items-top">
+                        <div class="col-6 col-md">
+                            <h5>Features</h5>
+                            <ul class="list-unstyled text-small">
+                                <li><a class="text-muted" href="#">Cool stuff</a></li>
+                                <li><a class="text-muted" href="#">Random feature</a></li>
+                                <li><a class="text-muted" href="#">Team feature</a></li>
+                                <li><a class="text-muted" href="#">Stuff for developers</a></li>
+                                <li><a class="text-muted" href="#">Another one</a></li>
+                                <li><a class="text-muted" href="#">Last time</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md">
+                            <h5>Resources</h5>
+                            <ul class="list-unstyled text-small">
+                                <li><a class="text-muted" href="#">Resource</a></li>
+                                <li><a class="text-muted" href="#">Resource name</a></li>
+                                <li><a class="text-muted" href="#">Another resource</a></li>
+                                <li><a class="text-muted" href="#">Final resource</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md">
+                            <h5>Resources</h5>
+                            <ul class="list-unstyled text-small">
+                                <li><a class="text-muted" href="#">Business</a></li>
+                                <li><a class="text-muted" href="#">Education</a></li>
+                                <li><a class="text-muted" href="#">Government</a></li>
+                                <li><a class="text-muted" href="#">Gaming</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md border-dark">
+                            <h5>About</h5>
+                            <ul class="list-unstyled text-small">
+                                <li><a class="text-muted" href="#">Team</a></li>
+                                <li><a class="text-muted" href="#">Locations</a></li>
+                                <li><a class="text-muted" href="#">Privacy</a></li>
+                                <li><a class="text-muted" href="#">Terms</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="row mt-3">
+                <div class="col style24 mb-n4">
+                    <p class="text-secondary text-center small mb-0 pt-1 pl-1 pr-1">© Copyright 2021 Maga.Watch. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="bootstrap/4/js/popper.min.js"></script>
+    <script src="bootstrap/4/js/bootstrap.min.js"></script>
+</body>
+
+</html>

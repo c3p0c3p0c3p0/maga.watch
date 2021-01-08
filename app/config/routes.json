@@ -1,0 +1,17 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "page": "index",
+      "routeType": "page"
+    },
+    {
+      "path": "/about",
+      "page": "about"
+    },
+    {
+      "path": "/contact",
+      "page": "contact"
+    }
+  ]
+}

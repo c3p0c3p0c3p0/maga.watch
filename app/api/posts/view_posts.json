@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "posts",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "post",
+              "column": "id"
+            },
+            {
+              "table": "post",
+              "column": "title"
+            },
+            {
+              "table": "post",
+              "column": "body"
+            },
+            {
+              "table": "post",
+              "column": "owner"
+            },
+            {
+              "table": "post",
+              "column": "created_on"
+            },
+            {
+              "table": "post",
+              "column": "modified_on"
+            },
+            {
+              "table": "post",
+              "column": "upvotes"
+            },
+            {
+              "table": "post",
+              "column": "downvotes"
+            },
+            {
+              "table": "post",
+              "column": "image"
+            }
+          ],
+          "table": {
+            "name": "post"
+          },
+          "joins": [],
+          "query": "SELECT id, title, body, owner, created_on, modified_on, upvotes, downvotes, image\nFROM post",
+          "params": []
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "name": "id",
+          "type": "text"
+        },
+        {
+          "name": "title",
+          "type": "text"
+        },
+        {
+          "name": "body",
+          "type": "text"
+        },
+        {
+          "name": "owner",
+          "type": "text"
+        },
+        {
+          "name": "created_on",
+          "type": "text"
+        },
+        {
+          "name": "modified_on",
+          "type": "text"
+        },
+        {
+          "name": "upvotes",
+          "type": "text"
+        },
+        {
+          "name": "downvotes",
+          "type": "text"
+        },
+        {
+          "name": "image",
+          "type": "text"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

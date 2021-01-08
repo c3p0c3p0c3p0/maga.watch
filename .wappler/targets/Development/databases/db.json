@@ -1,0 +1,505 @@
+{
+  "direct": true,
+  "type": "mysql",
+  "connection": {
+    "host": "localhost",
+    "port": 9906,
+    "user": "root",
+    "password": "8jJ00ZPs",
+    "database": "maga.watch"
+  },
+  "schema": {
+    "tables": {
+      "post": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "maga.watch",
+          "collation": "latin1_swedish_ci",
+          "comment": ""
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "comment": "",
+              "nullable": false
+            }
+          },
+          "title": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 500,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "body": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 12000,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "owner": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 36,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "created_on": {
+            "db": {
+              "type": "datetime",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "modified_on": {
+            "db": {
+              "type": "datetime",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "upvotes": {
+            "db": {
+              "type": "integer",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "downvotes": {
+            "db": {
+              "type": "integer",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "image": {
+            "db": {
+              "type": "reference",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true,
+              "references": "id",
+              "inTable": "images",
+              "onUpdate": "RESTRICT",
+              "onDelete": "RESTRICT"
+            }
+          }
+        }
+      },
+      "post_image": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "maga.watch",
+          "collation": "latin1_swedish_ci",
+          "comment": ""
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "comment": "",
+              "nullable": false
+            }
+          },
+          "title": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 255,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "owner": {
+            "db": {
+              "type": "reference",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true,
+              "references": "id",
+              "inTable": "users",
+              "onUpdate": "RESTRICT",
+              "onDelete": "RESTRICT"
+            }
+          },
+          "image": {
+            "db": {
+              "type": "reference",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true,
+              "references": "id",
+              "inTable": "images",
+              "onUpdate": "RESTRICT",
+              "onDelete": "RESTRICT"
+            }
+          },
+          "created_on": {
+            "db": {
+              "type": "timestamp",
+              "default": "current_timestamp()",
+              "primary": false,
+              "comment": "",
+              "nullable": false
+            }
+          },
+          "modified_on": {
+            "db": {
+              "type": "timestamp",
+              "default": "'0000-00-00 00:00:00'",
+              "primary": false,
+              "comment": "",
+              "nullable": false
+            }
+          }
+        }
+      },
+      "post_text": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "maga.watch",
+          "collation": "utf8_general_ci",
+          "comment": ""
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "comment": "",
+              "nullable": false
+            }
+          },
+          "title": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 50,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "body": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 50,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "owner": {
+            "db": {
+              "type": "reference",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true,
+              "references": "id",
+              "inTable": "users",
+              "onUpdate": "RESTRICT",
+              "onDelete": "RESTRICT"
+            }
+          },
+          "created_on": {
+            "db": {
+              "type": "datetime",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "modified_on": {
+            "db": {
+              "type": "datetime",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          }
+        }
+      },
+      "post_link": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "maga.watch",
+          "collation": "latin1_swedish_ci",
+          "comment": ""
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "comment": "",
+              "nullable": false
+            }
+          },
+          "link": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 255,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "title": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 255,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "owner": {
+            "db": {
+              "type": "reference",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true,
+              "references": "id",
+              "inTable": "users",
+              "onUpdate": "RESTRICT",
+              "onDelete": "RESTRICT"
+            }
+          },
+          "created_on": {
+            "db": {
+              "type": "datetime",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "modified_on": {
+            "db": {
+              "type": "datetime",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          }
+        }
+      },
+      "users": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "maga.watch",
+          "collation": "utf8_general_ci",
+          "comment": ""
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "comment": "",
+              "nullable": false
+            }
+          },
+          "first_name": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 50,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "last_name": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 50,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "gender": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 50,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "email": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 50,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "company": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 50,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "avatar": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 100,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          }
+        }
+      },
+      "images": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "maga.watch",
+          "collation": "utf8_general_ci",
+          "comment": ""
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "comment": "",
+              "nullable": false
+            }
+          },
+          "image": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 50,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "description": {
+            "db": {
+              "type": "text",
+              "default": "NULL",
+              "maxLength": 65535,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "category": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 12,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "author": {
+            "db": {
+              "type": "string",
+              "default": "NULL",
+              "maxLength": 50,
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          },
+          "date": {
+            "db": {
+              "type": "date",
+              "default": "NULL",
+              "primary": false,
+              "comment": "",
+              "nullable": true
+            }
+          }
+        }
+      },
+      "countries": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "maga.watch",
+          "collation": "utf8_general_ci",
+          "comment": ""
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "comment": "",
+              "nullable": false
+            }
+          },
+          "country_code": {
+            "db": {
+              "type": "string",
+              "default": "''",
+              "maxLength": 2,
+              "primary": false,
+              "comment": "",
+              "nullable": false
+            }
+          },
+          "country_name": {
+            "db": {
+              "type": "string",
+              "default": "''",
+              "maxLength": 100,
+              "primary": false,
+              "comment": "",
+              "nullable": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

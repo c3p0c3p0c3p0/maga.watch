@@ -1,0 +1,51 @@
+{
+  "projectName": "maga.watch",
+  "styleFile": "/css/style.css",
+  "assetsFolder": "/assets",
+  "designFramework": "bootstrap4",
+  "frameworks": [
+    {
+      "name": "jquery_slim_33",
+      "type": "cdn"
+    },
+    {
+      "name": "fontawesome_4",
+      "type": "cdn"
+    },
+    {
+      "name": "bootstrap4",
+      "type": "local"
+    },
+    {
+      "name": "appConnect",
+      "type": "local"
+    }
+  ],
+  "hostingType": "docker",
+  "projectServerModel": "node",
+  "webRootFolder": "/public",
+  "useRouting": true,
+  "addBase": true,
+  "routingHandler": "node",
+  "targets": [
+    {
+      "name": "Development",
+      "remoteURL": "http://localhost:8100",
+      "webServerPort": 8100,
+      "webServerLang": "node",
+      "targetType": "docker",
+      "webServer": "node",
+      "NodeVersion": "12",
+      "databaseType": "mariadb",
+      "databasePort": 9906,
+      "mariaDBVersion": "10.4.x",
+      "mariaDB_rootPassword": "8jJ00ZPs",
+      "mariaDB_databaseName": "maga.watch",
+      "mariaDB_username": "db_user",
+      "mariaDB_password": "6tnNnudj",
+      "dockerBuild": true
+    }
+  ],
+  "activeTarget": "Development",
+  "projectType": "web"
+}
